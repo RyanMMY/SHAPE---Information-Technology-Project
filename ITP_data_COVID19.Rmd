@@ -1,0 +1,20 @@
+```{r}
+install.packages("rtweet")
+
+library(rtweet)
+
+create_token(
+  app = "Ryan_M_K",
+  consumer_key = "FHT4ZCte1C5oLZmKD10lNe7L8",
+  consumer_secret = "9eAED20SM43UsAJgRe6kHf1dw6PL19fqmWu7lzT2Y0hnxxzOKE",
+  
+  access_token = "921367267702554624-07ggZtLvos5ubOs6RZcsgoipoPz93wx",
+  access_secret = "aW6ipQhfAsoAM4Nl5brF9v7SK5PJL9Gp9eiMUQakLbs48"
+)
+
+tweets <-search_tweets(q="#COVID19", n=50000, retryonratelimit=TRUE, include_rts=FALSE, `-filter`="replies", lang="en")
+
+tweets <- data.frame(tweets$created_at,tweets$text) #filter the columns
+
+write.csv(tweets, file="COVID-19.csv")
+```
